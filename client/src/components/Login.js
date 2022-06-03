@@ -1,4 +1,4 @@
-import { Button, TextField, Typography } from '@mui/material';
+import { Alert, Button, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { userLogin, userRegister } from '../services/user';
 
@@ -25,7 +25,8 @@ export default function Login(props) {
                 setError('Fill the required fields!');
             }            
         } catch (error) {
-          console.log(error);
+          console.log("userLoginClick error",error.response.data);
+          setError(error.response.data);
         }
     }
 
@@ -47,6 +48,7 @@ export default function Login(props) {
     }
 
     return (
+        <>
         <form>            
             <TextField
                 variant="outlined"
@@ -85,5 +87,7 @@ export default function Login(props) {
                 Sign Up
             </Button>
         </form>
+        {error && <Alert severity="error">{error}</Alert>}
+        </>
     )
 }
