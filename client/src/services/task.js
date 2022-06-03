@@ -1,9 +1,9 @@
 import axios from 'axios'
 const tasksAPIURL = 'http://localhost:8080/api/'+'tasks';
 
-export function getTasks() {
-    console.log("getTasks tasks",tasksAPIURL)
-    return axios.get(tasksAPIURL);
+export function getTasks(userId) {
+    console.log("getTasks tasks",tasksAPIURL+'?userId='+userId)
+    return axios.get(tasksAPIURL+'?userId='+userId);
 }
 
 export function addTask(task) {

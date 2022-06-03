@@ -3,9 +3,10 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-    try {
-        const tasks = await Task.find();
+    try {        
+        const tasks = await Task.find(req.query);
         res.send(tasks);
+        //res.send('hello, world!')
     } catch (error) {
         res.send(error);
     }
@@ -22,6 +23,7 @@ router.post("/", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
     try {
+        console.log("req.body",req)
         const task = await Task.findOneAndUpdate(
             { _id: req.params.id },
             req.body
