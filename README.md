@@ -7,18 +7,18 @@ Todo list Web API and user interface with MERN Stack.
 
 ### Setup with NPM
 
-To install server dependencies and start server, run the following commands in the server folder:
+To install react app dependencies and start application, run the following commands in the client folder:
 
 ```bash
 npm install
 npm start
 ```
 
-To install react app dependencies and start application, run the following commands in the client folder:
+To install server dependencies and start server, run the following commands in the server folder:
 
 ```bash
 npm install
-npm start
+node index.js
 ```
 
 Both the server and client must be running locally.
@@ -35,5 +35,5 @@ Both the server and client must be running locally.
 
 ## Frontend
 
-- UI for Todo List Web API CRUD operations with Material UI components.
+- UI for Todo List Web API CRUD operations with Material UI components and axios.
 - User authentication (sign in, login, logout).
