@@ -1,4 +1,4 @@
-import { Alert, Button, TextField, Typography } from '@mui/material';
+import { Alert, Button, TextField } from '@mui/material';
 import React, { useState } from 'react';
 import { userLogin, userRegister } from '../services/user';
 
@@ -73,7 +73,6 @@ export default function Login(props) {
             sx={{ height: "40px", width: '200px' }}
             color="primary"
             variant="outlined"
-            //type="submit"
             onClick={userLoginClick}
             >
                 Login

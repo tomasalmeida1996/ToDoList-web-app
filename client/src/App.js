@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Tasks from "./components/Tasks";
-import { Checkbox, Button, Paper, TextField } from "@mui/material";
+import { Button, Paper, TextField } from "@mui/material";
 import {
   addTask, deleteTask, getTasks, updateTask,
 } from "./services/task";
@@ -96,7 +96,6 @@ function App() {
           <>
             <div>TODO LIST</div>
             <form
-              //onSubmit={tasksRef.current?.handleSubmit}
               onSubmit={onNewTaskClick}
               style={{ display: "flex", justifyContent: "center", alignItems: "center", margin: "15px 0" }}
             >

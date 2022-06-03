@@ -2,19 +2,8 @@ const User = require("../models/user");
 const express = require("express");
 const router = express.Router();
 
-
-// router.get("/", async (req, res) => {
-//     try {
-//         const users = await User.find();
-//         res.send(users);
-//         //res.send('hello, world!')
-//     } catch (error) {
-//         res.send(error);
-//     }
-// });
 // Register
 router.post("/register", async (req, res) => {
-    // register logic goes here, with password hashing...
     try {
         // Possible user password hashing      
         console.log("userRegister post",req.body); 

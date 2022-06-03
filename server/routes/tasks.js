@@ -6,7 +6,6 @@ router.get("/", async (req, res) => {
     try {        
         const tasks = await Task.find(req.query);
         res.send(tasks);
-        //res.send('hello, world!')
     } catch (error) {
         res.send(error);
     }
