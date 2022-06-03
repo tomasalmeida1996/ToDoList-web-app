@@ -15,13 +15,13 @@ function App() {
     async function fetchTasks() {
       try {
         const { data } = await getTasks(oauth);
-        console.log("getTasks result ",data)
+        console.log("getTasks result ", data)
         setTasks({ tasks: data });
       } catch (error) {
         console.log(error);
       }
     }
-    fetchTasks();    
+    fetchTasks();
   }, [oauth]);
 
   const handleChange = (e) => {
@@ -32,7 +32,7 @@ function App() {
     e.preventDefault();
     const originalTasks = tasks.tasks;
     try {
-      console.log("onNewTaskClick oauth ",oauth)
+      console.log("onNewTaskClick oauth ", oauth)
       const { data } = await addTask({ userId: oauth, task: tasks.currentTask });
       const newtasks = originalTasks;
       newtasks.push(data);
@@ -53,7 +53,7 @@ function App() {
       const { data } = await updateTask(currentTask, {
         completed: tasks[index].completed,
       });
-      console.log("req data",data)
+      console.log("req data", data)
     } catch (error) {
       setTasks({ tasks: originalTasks });
       console.log(error);
@@ -78,17 +78,20 @@ function App() {
     setOAuth(user._id);
   }
   const userRegisterHandler = (user) => {
-    console.log("userRegisterHandler data",user)
+    console.log("userRegisterHandler data", user)
     setOAuth(user._id);
   }
-  const userLogoutHandler= () => {
+  const userLogoutHandler = () => {
     setOAuth(null);
   }
   return (
     <div style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100vw", height: "100vh", background: "#f5f5f5" }}>
       <Paper elevation={3} sx={{ width: "500px", minHeight: "300px", padding: "10px" }}>
         {!oauth ? (
-          <Login onUserRegister={userRegisterHandler} onUserLogin={userLoginHandler}/>
+          <>
+            <div>Login</div>
+            <Login onUserRegister={userRegisterHandler} onUserLogin={userLoginHandler} />
+          </>
         ) : (
           <>
             <div>TODO LIST</div>
@@ -118,7 +121,7 @@ function App() {
             <div>
               <Tasks onDeleteTask={handleDelete} onUpdateTask={handleUpdate} initialTasks={tasks.tasks} />
             </div>
-            <Logout onUserLogout={userLogoutHandler}/>
+            <Logout onUserLogout={userLogoutHandler} />
           </>
         )}
       </Paper>
