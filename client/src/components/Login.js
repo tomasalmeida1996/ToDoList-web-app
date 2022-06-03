@@ -1,8 +1,9 @@
-import { Alert, Button, TextField } from '@mui/material';
 import React, { useState } from 'react';
+import PropTypes from "prop-types";
+import { Alert, Button, TextField } from '@mui/material';
 import { userLogin, userRegister } from '../services/user';
 
-export default function Login(props) {
+export default function Login({onUserLogin, onUserRegister}) {
     const [user, setUser] = useState({ username: '', password: '' });
     const [error, setError] = useState(null);
 
@@ -17,9 +18,11 @@ export default function Login(props) {
         try {
             if(user.username !== '' && user.password !== ''){                  
                 console.log(user);
+                // const result = await userLogin(user).then(result => {                    
+                //     onUserLogin(result.data);
+                // })                
                 const result = await userLogin(user);
-                console.log("userLoginClick result",result.data);
-                props.onUserLogin(result.data);
+                onUserLogin(result.data);                
             }
             else{
                 setError('Fill the required fields!');
@@ -36,7 +39,7 @@ export default function Login(props) {
                 console.log(user);
                 const result = await userRegister(user).then(req => {
                     console.log("userRegisterClick result",req.data);
-                    props.onUserRegister(req.data);
+                    onUserRegister(req.data);
                 });
             }
             else{
@@ -90,3 +93,7 @@ export default function Login(props) {
         </>
     )
 }
+Login.propTypes = {    
+    onUserLogin: PropTypes.func.isRequired,
+    onUserRegister: PropTypes.func.isRequired,
+};

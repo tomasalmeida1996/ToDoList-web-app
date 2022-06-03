@@ -1,8 +1,9 @@
-import { useEffect, useState, forwardRef, useImperativeHandle } from "react";
-import { Paper, TextField, Typography } from "@mui/material";
+import { useEffect, useState} from "react";
+import PropTypes from "prop-types";
+import { Paper, Typography } from "@mui/material";
 import { Checkbox, Button } from "@mui/material";
 
-const Tasks = ({ initialTasks, ...props }) => {
+const Tasks = ({ initialTasks, onUpdateTask, onDeleteTask }) => {
   const [tasks, setTasks] = useState(initialTasks);
   //update tasks on render
   useEffect(() => {
@@ -18,7 +19,7 @@ const Tasks = ({ initialTasks, ...props }) => {
         >
           <Checkbox
             checked={task.completed}
-            onClick={() => props.onUpdateTask(task._id)}
+            onClick={() => onUpdateTask(task._id)}
             color="primary"
           />
 
@@ -28,7 +29,7 @@ const Tasks = ({ initialTasks, ...props }) => {
             {task.task}
           </Typography>
           <Button
-            onClick={() => props.onDeleteTask(task._id)}
+            onClick={() => onDeleteTask(task._id)}
             color="secondary"
           >
             delete
@@ -38,5 +39,15 @@ const Tasks = ({ initialTasks, ...props }) => {
     </>
   )
 }
-//)
+Tasks.propTypes = {
+  initialTasks: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      task: PropTypes.string.isRequired,      
+      completed: PropTypes.bool,
+    })
+  ),
+  onUpdateTask: PropTypes.func.isRequired,
+  onDeleteTask: PropTypes.func.isRequired,
+};
 export default Tasks;
