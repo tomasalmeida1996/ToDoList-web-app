@@ -1,6 +1,6 @@
 import { Button, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
-import { userLogin } from '../services/user';
+import { userLogin, userRegister } from '../services/user';
 
 export default function Login(props) {
     const [user, setUser] = useState({ username: '', password: '' });
@@ -15,11 +15,28 @@ export default function Login(props) {
 
     async function userLoginClick() {
         try {
-            if(user.username !== '' && user.password !== ''){                
+            if(user.username !== '' && user.password !== ''){                  
                 console.log(user);
                 const result = await userLogin(user);
                 console.log("userLoginClick result",result.data);
                 props.onUserLogin(result.data);
+            }
+            else{
+                setError('Fill the required fields!');
+            }            
+        } catch (error) {
+          console.log(error);
+        }
+    }
+
+    async function userRegisterClick() {
+        try {
+            if(user.username !== '' && user.password !== ''){                  
+                console.log(user);
+                const result = await userRegister(user).then(req => {
+                    console.log("userRegisterClick result",req.data);
+                    props.onUserRegister(req.data);
+                });
             }
             else{
                 setError('Fill the required fields!');
@@ -63,7 +80,7 @@ export default function Login(props) {
             sx={{ height: "40px", width: '200px' }}
             color="primary"
             variant="outlined"
-//            onClick={userLogin}
+            onClick={userRegisterClick}
             >
                 Sign Up
             </Button>

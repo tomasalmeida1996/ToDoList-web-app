@@ -1,7 +1,12 @@
 import axios from 'axios'
-const tasksAPIURL = 'http://localhost:8080/api/'+'users';
+const usersAPIURL = 'http://localhost:8080/api/'+'users';
 
 export function userLogin(user) {
-    console.log("userLogin tasks",[`${tasksAPIURL}/login`,user])
-    return axios.post(`${tasksAPIURL}/login`, user);    
+    console.log("userLogin tasks",[`${usersAPIURL}/login`,user])
+    return axios.post(`${usersAPIURL}/login`, user);    
 }
+export function userRegister(user) {
+    console.log("userLogin tasks",[`${usersAPIURL}/register`,user])
+    return axios.post(`${usersAPIURL}/register`, user);    
+}
+

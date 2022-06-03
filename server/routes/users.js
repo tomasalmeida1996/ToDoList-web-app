@@ -12,9 +12,22 @@ const router = express.Router();
 //         res.send(error);
 //     }
 // });
+// Register
+router.post("/register", async (req, res) => {
+    // register logic goes here, with password hashing...
+    try {
+        // Possible user password hashing      
+        console.log("userRegister post",req.body); 
+        const user = await new User(req.body).save();
+        res.send(user);
+    } catch (error) {
+        res.send(error);
+    }
+});
 
 router.post("/login", async (req, res) => {
     try {
+        // Possible user password hashing
         console.log("userLogin post",req.body);
         const users = await User.find(req.body);                
         
